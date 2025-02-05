@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npm bin shadcn-ui && ln -s $(npm bin shadcn-ui)/shadcn-ui.js node_modules/.bin/shadcn-ui"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
