@@ -8,3 +8,6 @@
 1. install node, nextjs, shadcn
 2. run `npm install`
 3. run `npm run dev`
+
+# Demo
+[![demo video](https://i9.ytimg.com/vi/3bQ37jWgq_o/mqdefault.jpg?sqp=CNSTjr0G-oaymwEmCMACELQB8quKqQMa8AEB-AHSCIAC0AWKAgwIABABGHIgXyghMA8=&rs=AOn4CLDKcn38Zz2Owc7rKnRWnvVn7yFGuA)](https://youtu.be/3bQ37jWgq_o)
