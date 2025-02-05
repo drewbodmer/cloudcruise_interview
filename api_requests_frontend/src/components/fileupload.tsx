@@ -1,20 +1,34 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-const API_HOST = process.env.HOST || 'http://localhost:3000';
+import { ScrollArea } from "@/components/ui/scroll-area"
 
-export default function FileUpload() {
+interface FileUploadProps {
+  apiHost: string;
+  files: string[];
+}
+
+export default function FileUpload({ files, apiHost }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string>('');
   const [isUploading, setIsUploading] = useState(false);
 
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
-    
+
     if (selectedFile) {
       if (selectedFile.name.endsWith('.har')) {
         setFile(selectedFile);
@@ -35,7 +49,7 @@ export default function FileUpload() {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${API_HOST}/api/upload`, {
+      const response = await fetch(`${apiHost}/api/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -51,29 +65,49 @@ export default function FileUpload() {
       setError('Upload failed');
       console.error(err);
     } finally {
-        setIsUploading(false);
+      setIsUploading(false);
     }
   };
 
-    return (
-        <div className="flex flex-col w-full max-w-sm gap-4">
-        <div className="flex items-center space-x-2">
-          <Label htmlFor="harfile">.har file</Label>
-          <Input 
-            id="harfile" 
-            type="file" 
+  return (
+    <Card className="w-[80vw] min-w-[650px] max-w-[1000px]">
+      <CardHeader>
+        <CardTitle>1. Upload .har file</CardTitle>
+        <CardDescription>Use these files in the next step.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex space-x-4">
+        <div className="flex-1">
+          <Input
+            id="harfile"
+            type="file"
             accept=".har"
             onChange={handleFileChange}
           />
-          <Button 
-            onClick={handleUpload} 
+          <Button
+            onClick={handleUpload}
             disabled={!file || isUploading}
+            className="mt-2"
           >
             {isUploading ? 'Uploading...' : 'Submit'}
           </Button>
         </div>
-        {file && <p className="text-sm text-gray-500">Selected: {file.name}</p>}
+        <ScrollArea className="flex-1 h-[200px]">
+          <div className="p-4">
+            <h4 className="mb-4 text-sm font-medium leading-none">Available Files</h4>
+            {files.map((file) => (
+              <Fragment key={file}>
+                <div className="text-sm">
+                  {file}
+                </div>
+                <Separator className="my-2" />
+              </Fragment>
+            ))}
+          </div>
+        </ScrollArea>
+      </CardContent>
+      <CardFooter className="flex justify-between">
         {error && <p className="text-sm text-red-500">{error}</p>}
-      </div>
-      );
+      </CardFooter>
+    </Card>
+  );
 }
