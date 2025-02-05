@@ -1,8 +1,4 @@
-from haralyzer import HarParser, HarPage
 from urllib.parse import urlencode
-import logging
-logger = logging.getLogger('uvicorn.error')
-logger.setLevel(logging.DEBUG)
 from llm_helpers import make_query
 import json
 

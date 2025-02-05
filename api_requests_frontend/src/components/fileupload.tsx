@@ -20,7 +20,7 @@ interface FileUploadProps {
   files: string[];
 }
 
-export default function FileUpload({ files, apiHost }: FileUploadProps) {
+export function FileUpload({ files, apiHost }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string>('');
   const [isUploading, setIsUploading] = useState(false);

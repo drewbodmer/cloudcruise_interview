@@ -1,5 +1,4 @@
 from openai import OpenAI
-from typing import List
 import json
 import os
 
@@ -9,7 +8,7 @@ tools = [{
     "type": "function",
     "function": {
         "name": "choose_request",
-        "description": "Choose the API request that fits the query.",
+        "description": "The request that fits the query.",
         "parameters": {
             "type": "object",
             "properties": {

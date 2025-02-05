@@ -204,11 +204,12 @@ export function Query({ files, apiHost }: QueryProps) {
                     <pre className="mt-2 max-w-full rounded-md bg-slate-950 p-4">
                         <div className="relative">
                             <button
-                                className="absolute top-2 right-2 text-xs text-gray-400"
+                                className="absolute right-1 text-xs text-gray-400 bg-slate-950 p-1 rounded"
                                 onClick={() => navigator.clipboard.writeText(response)}
                             >
-                                Copy
+                            Copy
                             </button>
+                            <br></br>
                             <code className="text-xs text-white whitespace-pre-wrap">{response}</code>
                         </div>
                     </pre>

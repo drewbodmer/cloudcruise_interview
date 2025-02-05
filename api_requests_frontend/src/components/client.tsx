@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { Query } from "./query";
-import FileUpload from "./fileupload";
+import { FileUpload } from "./fileupload";
 const API_HOST = process.env.HOST || 'http://localhost:8000';
 
 export default function Client() {
